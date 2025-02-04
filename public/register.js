@@ -73,6 +73,11 @@ document.getElementById('register-form').addEventListener('submit', async functi
         document.getElementById('message').innerText = '¡Registro completo! 🐾';
         document.getElementById('register-form').reset();
 
+        // mostrar un mensaje de éxito
+        alert('¡Registro completo! 🐾');
+
+        window.location.href = `/index.html?userId=${userId}`;
+
     } catch (error) {
         console.error('Error:', error);
         document.getElementById('message').innerText = error.message || 'Ocurrió un error al registrarse.';
