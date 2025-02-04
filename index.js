@@ -33,8 +33,8 @@ app.use('/api/pets', petsRoutes);
 // Rutas para las imágenes de mascotas
 app.use('/api/pet-images', petImagesRoutes);
 
-// ruta login
-app.use('/api/login', loginRoutes);
+// Rutas de login
+app.use('/api', loginRoutes);
 
 
 // Iniciar el servidor
