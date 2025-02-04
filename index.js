@@ -30,8 +30,7 @@ app.use('/api/pets', petsRoutes);
 app.use('/api/pet-images', petImagesRoutes);
 
 
-
 // Iniciar el servidor
-app.listen(PORT, () => {
+app.listen(PORT, "0.0.0.0", () => {
   console.log(`Servidor corriendo en http://localhost:${PORT}`);
 });
