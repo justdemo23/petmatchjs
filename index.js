@@ -3,6 +3,7 @@ const cors = require('cors');
 const usersRoutes = require('./routes/users');
 const petsRoutes = require('./routes/pets');
 const petImagesRoutes = require('./routes/petImages');
+const loginRoutes = require('./routes/login');
 const path = require('path');
 
 const app = express();
@@ -20,14 +21,20 @@ app.get('/', (req, res) => {
   res.send('¡Bienvenido a PetMatch API!');
 });
 
-// Rutas de usuarios
+// ruta registrar usuario
 app.use('/api/users', usersRoutes);
 
-// Rutas de mascotas
+// ruta registrar mascota
+app.use('/api/pets', petsRoutes);
+
+// Rutas de ver mascotas
 app.use('/api/pets', petsRoutes);
 
 // Rutas para las imágenes de mascotas
 app.use('/api/pet-images', petImagesRoutes);
+
+// ruta login
+app.use('/api/login', loginRoutes);
 
 
 // Iniciar el servidor
