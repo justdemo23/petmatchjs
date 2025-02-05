@@ -6,6 +6,7 @@ const petImagesRoutes = require('./routes/petImages');
 const loginRoutes = require('./routes/login');
 const forumRoutes = require('./routes/forum');
 const likesRoutes = require('./routes/likes');
+const notificationsRoutes = require('./routes/notifications');
 const path = require('path');
 
 const app = express();
@@ -44,6 +45,8 @@ app.use('/api/forum', forumRoutes);
 // Rutas de likes
 app.use('/api/likes', likesRoutes);
 
+// Rutas de notificaciones
+app.use('/api/notifications', notificationsRoutes);
 
 // Iniciar el servidor
 app.listen(PORT, "0.0.0.0", () => {
