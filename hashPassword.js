@@ -1,4 +1,4 @@
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 
 const password = 'FKADFLAS';  // La contraseña original que quieres hashear
 const saltRounds = 10;

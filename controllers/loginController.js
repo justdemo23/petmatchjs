@@ -1,7 +1,7 @@
 // controllers/loginController.js
 
 const jwt = require('jsonwebtoken');
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 const db = require('../db');
 
 // Clave secreta para JWT (definida directamente en el código)
