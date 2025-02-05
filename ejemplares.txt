@@ -1,79 +1,63 @@
-DESCARGA MYSQL  LUEGO EN LA CONSOLA DE MYSQL PEGA ESTOS COMANDOS PARA QUE SE CREE LA BASE DE DATOS
 
-EN EL ARCHIVO CONFIG.PY CAMBIAR EL USUARIO Y LA CONTRASEÑA DE LA BASE DE DATOS
-
-
-CREATE DATABASE petmatch;
-
+-- Base de datos PetMatch
+CREATE DATABASE IF NOT EXISTS petmatch;
 USE petmatch;
 
 -- Tabla para usuarios
 CREATE TABLE users (
-    id INT AUTO_INCREMENT PRIMARY KEY,  -- ID autoincremental para el usuario
+    id INT AUTO_INCREMENT PRIMARY KEY,
     email VARCHAR(120) UNIQUE NOT NULL,
     password VARCHAR(255) NOT NULL,
     first_name VARCHAR(80) NOT NULL,
     last_name VARCHAR(80) NOT NULL,
-    address VARCHAR(255),  -- No obligatorio
-    is_premium BOOLEAN DEFAULT FALSE,  -- Indica si el usuario es premium
+    address VARCHAR(255),
+    is_premium BOOLEAN DEFAULT FALSE,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 -- Tabla para mascotas
 CREATE TABLE pets (
-    id INT AUTO_INCREMENT PRIMARY KEY,  -- ID autoincremental para la mascota
+    id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(80) NOT NULL,
     breed VARCHAR(120) NOT NULL,
     age INT NOT NULL,
     description TEXT,
-    owner_id INT NOT NULL,  -- ID del dueño (relación con users)
+    owner_id INT NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (owner_id) REFERENCES users(id) ON DELETE CASCADE
 );
 
 -- Tabla para imágenes de mascotas
 CREATE TABLE pet_images (
-    id INT AUTO_INCREMENT PRIMARY KEY,  -- ID autoincremental para la imagen
-    pet_id INT NOT NULL,  -- ID de la mascota (relación con pets)
-    filepath VARCHAR(255) NOT NULL,  -- Ruta de la imagen en el servidor
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    pet_id INT NOT NULL,
+    filepath VARCHAR(255) NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (pet_id) REFERENCES pets(id) ON DELETE CASCADE
 );
 
 -- Tabla para suscripciones
 CREATE TABLE subscriptions (
-    id INT AUTO_INCREMENT PRIMARY KEY,  -- ID autoincremental para la suscripción
-    user_id INT NOT NULL,  -- ID del usuario (relación con users)
-    plan ENUM('free', 'premium') NOT NULL,  -- Tipo de suscripción
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    plan ENUM('free', 'premium') NOT NULL,
     start_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    end_date TIMESTAMP,  -- Fecha de finalización de la suscripción
+    end_date TIMESTAMP,
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );
 
-
-CREATE TABLE matches (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    pet_id_1 INT NOT NULL,
-    pet_id_2 INT NOT NULL,
-    matched_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (pet_id_1) REFERENCES pets(id),
-    FOREIGN KEY (pet_id_2) REFERENCES pets(id),
-    UNIQUE KEY unique_match (pet_id_1, pet_id_2)
-);
-
-
+-- Tabla para likes entre mascotas
 CREATE TABLE likes (
-         id INT AUTO_INCREMENT PRIMARY KEY,
-         pet_id_from INT NOT NULL,
-         pet_id_to INT NOT NULL,
-         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-         FOREIGN KEY (pet_id_from) REFERENCES pets(id),
-         FOREIGN KEY (pet_id_to) REFERENCES pets(id)
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    pet_id_from INT NOT NULL,
+    pet_id_to INT NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (pet_id_from) REFERENCES pets(id),
+    FOREIGN KEY (pet_id_to) REFERENCES pets(id)
 );
 
-
--- Tabla de dislikes
-CREATE TABLE IF NOT EXISTS dislikes (
+-- Tabla para dislikes entre mascotas
+CREATE TABLE dislikes (
     id INT AUTO_INCREMENT PRIMARY KEY,
     pet_id_from INT NOT NULL,
     pet_id_to INT NOT NULL,
@@ -82,3 +66,46 @@ CREATE TABLE IF NOT EXISTS dislikes (
     FOREIGN KEY (pet_id_to) REFERENCES pets(id),
     UNIQUE KEY unique_dislike (pet_id_from, pet_id_to)
 );
+
+-- Tabla para matches entre mascotas
+CREATE TABLE matches (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    pet_id_1 INT NOT NULL,
+    pet_id_2 INT NOT NULL,
+    matched_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (pet_id_1) REFERENCES pets(id),
+    FOREIGN KEY (pet_id_2) REFERENCES pets(id),
+    UNIQUE KEY unique_match (LEAST(pet_id_1, pet_id_2), GREATEST(pet_id_1, pet_id_2))
+);
+
+-- Tabla para publicaciones en el foro
+CREATE TABLE forum_posts (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    title VARCHAR(255) NOT NULL,
+    content TEXT NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+);
+
+-- Tabla para imágenes en publicaciones del foro
+CREATE TABLE forum_images (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    post_id INT NOT NULL,
+    filepath VARCHAR(255) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (post_id) REFERENCES forum_posts(id) ON DELETE CASCADE
+);
+
+-- Tabla para comentarios en el foro
+CREATE TABLE forum_comments (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    post_id INT NOT NULL,
+    user_id INT NOT NULL,
+    comment TEXT NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (post_id) REFERENCES forum_posts(id) ON DELETE CASCADE,
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+);
+"""
+
