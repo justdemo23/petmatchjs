@@ -4,6 +4,8 @@ const usersRoutes = require('./routes/users');
 const petsRoutes = require('./routes/pets');
 const petImagesRoutes = require('./routes/petImages');
 const loginRoutes = require('./routes/login');
+const forumRoutes = require('./routes/forum');
+const likesRoutes = require('./routes/likes');
 const path = require('path');
 
 const app = express();
@@ -35,6 +37,12 @@ app.use('/api/pet-images', petImagesRoutes);
 
 // Rutas de login
 app.use('/api', loginRoutes);
+
+// Rutas del foro
+app.use('/api/forum', forumRoutes);
+
+// Rutas de likes
+app.use('/api/likes', likesRoutes);
 
 
 // Iniciar el servidor
