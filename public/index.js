@@ -37,19 +37,20 @@ function showCurrentPet() {
     const pet = pets[currentPetIndex];  
     console.log('Mostrando mascota:', pet);
     
-    let imagePath = pet.filepath ? `/uploads/${pet.filepath}` : '/default-pet.jpg';
+    // Asegurarse de que la imagen se muestra correctamente
+    let imagePath = pet.filepath ? pet.filepath : '/default-pet.jpg';
 
     const container = document.getElementById('pet-cards-container');
     container.innerHTML = `
         <div class="card" id="current-card">
             <div class="card-image">
-                <img src="${imagePath}" alt="${pet.name}" onerror="this.src='/default-pet.jpg'">
+                <img src="${imagePath}" alt="${pet.name}" onerror="this.onerror=null; this.src='/default-pet.jpg'">
             </div>
             <div class="card-info">
                 <h2>${pet.name}, ${pet.age} años</h2>
                 <p>${pet.description || 'Sin descripción'}</p>
                 <p>Raza: ${pet.breed}</p>
-                <p>Dueño: ${pet.owner_name || 'Sin dueño registrado'}</p>
+                <p>Dueño: ${pet.owner_name || 'Desconocido'}</p>
             </div>
             <div class="card-buttons">
                 <button class="action-button dislike-btn" onclick="dislikePet()">
@@ -74,7 +75,7 @@ function showCurrentPet() {
             </div>
         </div>
     `;
-    
+
     updateProgressBar();
 }
 

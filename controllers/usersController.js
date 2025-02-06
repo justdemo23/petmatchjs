@@ -1,36 +1,35 @@
-const mysql = require('mysql2/promise');
+const db = require('../db');
+const bcrypt = require('bcrypt');  // Importar bcrypt para hashear contraseñas
 
-const pool = mysql.createPool({
-    host: 'localhost',
-    user: 'root',
-    password: '71422400dmpb',
-    database: 'petmatch'
-});
+// Crear un nuevo usuario
+const createUser = async (req, res) => {
+    const { email, password, first_name, last_name, address } = req.body;
 
-async function createUser(req, res) {
-    try {
-        const { first_name, last_name, email, password } = req.body;
-        const [rows] = await pool.execute('INSERT INTO users (first_name, last_name, email, password) VALUES (?, ?, ?, ?)', [first_name, last_name, email, password]);
-        res.status(201).json({ message: 'Usuario creado exitosamente' });
-    } catch (error) {
-        console.error(error);
-        res.status(500).json({ error: 'Error al crear el usuario' });
+    if (!email || !password || !first_name || !last_name) {
+        return res.status(400).json({ message: 'Faltan campos obligatorios' });
     }
-}
 
-async function loginUser(req, res) {
     try {
-        const { email, password } = req.body;
-        const [rows] = await pool.execute('SELECT * FROM users WHERE email = ? AND password = ?', [email, password]);
-        if (rows.length > 0) {
-            res.redirect('/pets');
-        } else {
-            res.status(401).json({ error: 'Credenciales incorrectas' });
+        const [existingUser] = await db.execute('SELECT * FROM users WHERE email = ?', [email]);
+        if (existingUser.length > 0) {
+            return res.status(409).json({ message: 'Este correo ya está registrado.' });
         }
-    } catch (error) {
-        console.error(error);
-        res.status(500).json({ error: 'Error al iniciar sesión' });
-    }
-}
 
-module.exports = { createUser, loginUser };
+        // Hashear la contraseña antes de guardarla
+        const saltRounds = 10;
+        const hashedPassword = await bcrypt.hash(password, saltRounds);
+
+        const [result] = await db.execute(
+            `INSERT INTO users (email, password, first_name, last_name, address)
+            VALUES (?, ?, ?, ?, ?)`,
+            [email, hashedPassword, first_name, last_name, address]
+        );
+
+        res.status(201).json({ message: 'Usuario registrado exitosamente', userId: result.insertId });
+    } catch (error) {
+        console.error('Error al registrar usuario:', error);
+        res.status(500).json({ message: 'Error en el servidor al registrar el usuario' });
+    }
+};
+
+module.exports = { createUser };

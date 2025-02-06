@@ -1,3 +1,4 @@
+<!-- login.html -->
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -11,11 +12,7 @@
         <header>
             <h1>🐾¡Inicia Sesión en PetMatch!🐾</h1>
         </header>
-        <form action="/login" method="POST">
-            <div class="form-group">
-                <label for="first_name">Nombre:</label>
-                <input type="text" id="first_name" name="first_name" required>
-            </div>
+        <form id="login-form">
             <div class="form-group">
                 <label for="email">Correo Electrónico:</label>
                 <input type="email" id="email" name="email" required>
@@ -26,7 +23,7 @@
             </div>
             <button type="submit">Iniciar Sesión</button>
         </form>
-        <p>¿No tienes una cuenta? <a href="/register">Regístrate aquí</a></p>
+        <p>¿No tienes una cuenta? <a href="/register.html">Regístrate aquí</a></p>
     </div>
     <script src="/login.js"></script>
 </body>

@@ -7,16 +7,19 @@ const loginRoutes = require('./routes/login');
 const forumRoutes = require('./routes/forum');
 const likesRoutes = require('./routes/likes');
 const notificationsRoutes = require('./routes/notifications');
-const path = require('path');
+const dislikesRoutes = require('./routes/dislikes');
 
+
+const path = require('path');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
 app.use(cors());
 app.use(express.json()); // Para recibir JSON en las peticiones
-
 app.use(express.static('public'));
+app.use('/uploads', express.static('public/uploads'));
 app.use('/uploads', express.static('uploads'));
+
 
 
 // Ruta principal para verificar que la API funciona
@@ -48,17 +51,13 @@ app.use('/api/likes', likesRoutes);
 // Rutas de notificaciones
 app.use('/api/notifications', notificationsRoutes);
 
+// ruta login
+app.use('/api/login', loginRoutes);
+
+// Rutas de dislikes
+app.use('/api/dislikes', dislikesRoutes);
+
 // Iniciar el servidor
 app.listen(PORT, "0.0.0.0", () => {
   console.log(`Servidor corriendo en http://localhost:${PORT}`);
-});
-
-// Ruta para servir el archivo login.html
-app.get('/login', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'login.html'));
-});
-
-// Ruta para servir el archivo register.html
-app.get('/register', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'register.html'));
 });

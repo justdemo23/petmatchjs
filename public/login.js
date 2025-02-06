@@ -1,12 +1,10 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const loginForm = document.getElementById('loginForm');
+document.getElementById('login-form').addEventListener('submit', async (event) => {
+    event.preventDefault();
 
-    loginForm.addEventListener('submit', async (event) => {
-        event.preventDefault();
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
 
-        const email = document.getElementById('email').value;
-        const password = document.getElementById('password').value;
-
+    try {
         const response = await fetch('/api/login', {
             method: 'POST',
             headers: {
@@ -15,14 +13,18 @@ document.addEventListener('DOMContentLoaded', () => {
             body: JSON.stringify({ email, password })
         });
 
-        const result = await response.json();
-
-        if (response.ok) {
-            // Login successful
-            window.location.href = '/dashboard';
-        } else {
-            // Login failed
-            alert(result.message);
+        if (!response.ok) {
+            throw new Error('Error al iniciar sesión');
         }
-    });
+
+        const data = await response.json();
+        localStorage.setItem('token', data.token);
+        localStorage.setItem('userId', data.user.id);  // Guardar ID del usuario para futuros usos
+
+        // Redirigir al dashboard después de un login exitoso
+        window.location.href = '/dashboard.html';
+    } catch (error) {
+        console.error('Error:', error);
+        alert('Credenciales incorrectas. Inténtalo de nuevo.');
+    }
 });

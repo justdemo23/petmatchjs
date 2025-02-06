@@ -1,0 +1,72 @@
+:root {
+    --primary-color: #FFA500;
+    --secondary-color: #FFFFFF;
+    --accent-color: #4B0082;
+    --text-color: #333333;
+    --background-color: #F5F5F5;
+    --border-radius: 15px;
+    --shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    --new-test-color: #FF0000;
+    --transition: all 0.3s ease-in-out;
+    --card-padding: 20px;
+    --card-gap: 20px;
+}
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 400px;
+    margin: 50px auto;
+    padding: var(--card-padding);
+    background-color: var(--secondary-color);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+}
+
+h1 {
+    color: var(--primary-color);
+    text-align: center;
+}
+
+input[type="text"],
+input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid var(--primary-color);
+    border-radius: var(--border-radius);
+    box-sizing: border-box;
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+    border: none;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+button:hover {
+    background-color: var(--accent-color);
+}
+
+a {
+    color: var(--primary-color);
+    text-decoration: none;
+    display: block;
+    text-align: center;
+    margin-top: 10px;
+}
+
+a:hover {
+    color: var(--accent-color);
+}

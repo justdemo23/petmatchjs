@@ -1,0 +1,141 @@
+/* notifications.css */
+
+:root {
+    --primary-color: #FFA500;
+    --secondary-color: #FFFFFF;
+    --accent-color: #4B0082;
+    --text-color: #333333;
+    --background-color: #F5F5F5;
+    --border-radius: 15px;
+    --shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    --transition: all 0.3s ease-in-out;
+    --card-padding: 20px;
+    --card-gap: 20px;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.container {
+    width: 100%;
+    max-width: 600px;
+    padding: 20px;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 20px;
+    color: var(--primary-color);
+}
+
+#notifications-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px;
+    width: 100%;
+    max-width: 600px;
+    box-sizing: border-box;
+}
+
+.card {
+    display: flex;
+    align-items: center;
+    background: var(--secondary-color);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    padding: 10px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
+}
+
+.card-image {
+    min-width: 50px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 15px;
+    flex-shrink: 0;
+}
+
+.card-info {
+    text-align: left;
+    flex-grow: 1;
+}
+
+.card-info h2 {
+    margin: 0;
+    font-size: 1rem;
+}
+
+.card-info p {
+    margin: 2px 0;
+    font-size: 0.9rem;
+}
+
+button {
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+    border: none;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+button:hover {
+    background-color: var(--accent-color);
+}
+
+.pet-thumbnail {
+    width: 50px;
+    height: 50px;
+    min-width: 50px;        /* Evita que la imagen se expanda */
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 15px;
+    flex-shrink: 0;         /* Previene que la imagen se encoja */
+}
+
+/* Responsive Design */
+@media (max-width: 480px) {
+    #notifications-container {
+        padding: 5px;
+    }
+    
+    .card {
+        padding: 8px;
+    }
+
+    .card-image {
+        min-width: 1px;
+        width: 1px;
+        height: 1px;
+    }
+
+    button {
+        width: 100%;
+    }
+
+    .pet-thumbnail {
+        width: 40px;
+        height: 40px;
+        min-width: 40px;    /* Mantiene consistencia en tamaño móvil */
+    }
+}
+    

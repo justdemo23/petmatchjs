@@ -1,0 +1,108 @@
+/* dashboard.css */
+
+:root {
+    --primary-color: #FFA500;
+    --secondary-color: #FFFFFF;
+    --accent-color: #4B0082;
+    --text-color: #333333;
+    --background-color: #F5F5F5;
+    --border-radius: 15px;
+    --shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    --transition: all 0.3s ease-in-out;
+    --card-padding: 20px;
+    --card-gap: 20px;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.container {
+    width: 100%;
+    max-width: 600px;
+    padding: 20px;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 20px;
+    color: var(--primary-color);
+}
+
+nav {
+    margin-bottom: 20px;
+}
+
+.dashboard-menu {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.dashboard-menu li {
+    background: var(--secondary-color);
+    padding: 15px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+    text-align: center;
+}
+
+.dashboard-menu li a {
+    text-decoration: none;
+    color: var(--primary-color);
+    font-size: 1.2rem;
+    display: block;
+}
+
+.dashboard-menu li:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
+    background-color: var(--accent-color);
+}
+
+.dashboard-menu li a:hover {
+    color: var(--secondary-color);
+}
+
+#dashboard-content {
+    background: var(--secondary-color);
+    padding: var(--card-padding);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    text-align: center;
+}
+
+/* Responsive Design */
+@media (max-width: 480px) {
+    .container {
+        padding: 10px;
+    }
+
+    .dashboard-menu li a {
+        font-size: 1rem;
+    }
+
+    #dashboard-content {
+        padding: 15px;
+    }
+}
+
+@media (hover: hover) {
+    .dashboard-menu li:hover {
+        transform: translateY(-5px);
+    }
+}
+
+.dashboard-menu li:active {
+    transform: scale(0.95);
+}
