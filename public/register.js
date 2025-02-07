@@ -76,7 +76,7 @@ document.getElementById('register-form').addEventListener('submit', async functi
         // mostrar un mensaje de éxito
         alert('¡Registro completo! 🐾');
 
-        window.location.href = `/index.html?userId=${userId}`;
+        window.location.href = `/find.html?userId=${userId}`;
 
     } catch (error) {
         console.error('Error:', error);

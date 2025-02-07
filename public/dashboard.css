@@ -1,108 +1,140 @@
-/* dashboard.css */
-
+/* Definir variables de colores */
 :root {
-    --primary-color: #FFA500;
-    --secondary-color: #FFFFFF;
-    --accent-color: #4B0082;
-    --text-color: #333333;
-    --background-color: #F5F5F5;
-    --border-radius: 15px;
-    --shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    --transition: all 0.3s ease-in-out;
-    --card-padding: 20px;
-    --card-gap: 20px;
+    --primary-color: #FFA500;  /* Naranja cálido */
+    --secondary-color: #FFFFFF;  /* Blanco */
+    --accent-color: #4B0082;  /* Índigo */
+    --text-color: #333333;  /* Gris oscuro */
+    --background-color: #F5F5F5;  /* Gris claro */
 }
 
+/* Estilos generales */
 body {
-    font-family: 'Arial', sans-serif;
-    background-color: var(--background-color);
-    color: var(--text-color);
+    font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
+    background-color: var(--background-color);
+    text-align: center;
+    color: var(--text-color);
+}
+
+/* Header con el logo centrado */
+.dashboard-header {
+    background: var(--primary-color);
+    padding: 20px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.logo {
+    font-size: 24px;
+    color: var(--secondary-color);
+    font-weight: bold;
+}
+
+/* Navbar con botones izquierda y derecha */
+.menu-nav {
+    background: var(--accent-color);
+    padding: 10px;
     display: flex;
-    flex-direction: column;
+    justify-content: space-between; /* Espacio entre botones de izquierda y derecha */
     align-items: center;
 }
 
-.container {
+/* Contenedor para botones de la izquierda */
+.left-buttons {
+    display: flex;
+    gap: 15px;
+    margin-left: 15px;
+}
+
+/* Contenedor para botón de la derecha */
+.right-buttons {
+    margin-right: 15px;
+}
+
+/* Botón de perfil y foro alineados a la izquierda */
+#profile-button,
+#forum-button {
+    background: var(--primary-color);
+    color: var(--background-color);
+    padding: 10px 18px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    transition: background 0.3s ease;
+}
+
+#profile-button:hover,
+#forum-button:hover {
+    background: #e68900; /* Naranja más oscuro */
+}
+
+/* Botón de cerrar sesión alineado a la derecha */
+#logout-button {
+    background: var(--primary-color);
+    color: var(--background-color);
+    padding: 10px 18px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    transition: background 0.3s ease;
+}
+
+#logout-button:hover {
+    background: #3A0066; /* Índigo más oscuro */
+}
+
+/* Contenido principal */
+#dashboard-content {
+    flex-grow: 1;
+    padding: 30px 10px;
+}
+
+
+
+/* Enlaces del main */
+.dashboard-links a {
+    text-decoration: none;
+    color: var(--secondary-color);
+    font-size: 16px;
+    font-weight: bold;
+    background: var(--primary-color);
+    padding: 12px 20px;
+    border-radius: 8px;
+    transition: background 0.3s ease, transform 0.2s ease;
+    display: block;
     width: 100%;
-    max-width: 600px;
-    padding: 20px;
-}
-
-header {
     text-align: center;
-    margin-bottom: 20px;
-    color: var(--primary-color);
 }
 
-nav {
-    margin-bottom: 20px;
-}
-
-.dashboard-menu {
+/* Lista de enlaces en el main */
+.dashboard-links {
     list-style: none;
     padding: 0;
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 10px;
+    align-items: center;
+    max-width: 300px;
+    margin: 0 auto;
 }
 
-.dashboard-menu li {
-    background: var(--secondary-color);
-    padding: 15px;
-    border-radius: var(--border-radius);
-    box-shadow: var(--shadow);
-    transition: var(--transition);
-    text-align: center;
+.dashboard-links a:hover {
+    background: #e68900;
+    transform: scale(1.05);
 }
 
-.dashboard-menu li a {
-    text-decoration: none;
-    color: var(--primary-color);
-    font-size: 1.2rem;
-    display: block;
-}
-
-.dashboard-menu li:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
-    background-color: var(--accent-color);
-}
-
-.dashboard-menu li a:hover {
+/* Pie de página */
+.dashboard-footer {
+    background: var(--primary-color);
     color: var(--secondary-color);
-}
-
-#dashboard-content {
-    background: var(--secondary-color);
-    padding: var(--card-padding);
-    border-radius: var(--border-radius);
-    box-shadow: var(--shadow);
+    padding: 10px;
+    font-size: 14px;
     text-align: center;
-}
-
-/* Responsive Design */
-@media (max-width: 480px) {
-    .container {
-        padding: 10px;
-    }
-
-    .dashboard-menu li a {
-        font-size: 1rem;
-    }
-
-    #dashboard-content {
-        padding: 15px;
-    }
-}
-
-@media (hover: hover) {
-    .dashboard-menu li:hover {
-        transform: translateY(-5px);
-    }
-}
-
-.dashboard-menu li:active {
-    transform: scale(0.95);
+    width: 100%;
+    position: relative;
+    bottom: 0;
 }

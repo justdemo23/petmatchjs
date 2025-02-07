@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Foro - PetMatch</title>
+    <link rel="stylesheet" href="/forum.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="forum-header">
+        <h1>PetMatch 🐾</h1>
+    </header>
+
+    <!-- Navbar -->
+    <nav class="menu-nav">
+        <div class="left-buttons">
+            <button id="dashboard-button">Dashboard</button>
+            <button id="profile-button">Perfil</button>
+        </div>
+        <div class="right-buttons">
+            <button id="logout-button">Cerrar Sesión</button>
+        </div>
+    </nav>
+
+    <!-- Contenedor del Foro -->
+    <main class="forum-container">
+        <h2>Comunidad PetMatch 🐾</h2>
+
+        <!-- Formulario para nueva publicación -->
+        <section class="create-post">
+            <div class="post-header">
+                <input type="text" id="post-title" placeholder="Título de la publicación">
+                <textarea id="post-content" placeholder="¿Qué estás pensando?" rows="3"></textarea>
+            </div>
+
+            <!-- Campo para adjuntar imagen -->
+            <div class="file-upload-container">
+                <label for="post-image" class="file-label">
+                    <i class="fa-solid fa-image"></i> Adjuntar imagen
+                </label>
+                <input type="file" id="post-image" accept="image/*">
+                <img id="image-preview" class="upload-preview" alt="Vista previa de la imagen">
+            </div>
+
+            <div class="post-actions">
+                <button id="post-button">Publicar</button>
+            </div>
+        </section>
+
+        <!-- Lista de publicaciones -->
+        <section class="forum-posts">
+            <h2>Publicaciones Recientes</h2>
+            <div id="posts-list">
+                <div class="post-divider"></div>
+                <!-- Aquí se insertarán las publicaciones dinámicamente -->
+            </div>
+        </section>
+    </main>
+    <script src="/forum.js"></script>
+</body>
+</html>

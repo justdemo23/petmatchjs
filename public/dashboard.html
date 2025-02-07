@@ -7,23 +7,39 @@
     <link rel="stylesheet" href="/dashboard.css">
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1>🐾 Dashboard PetMatch 🐾</h1>
-        </header>
+    <!-- Logo centrado -->
+    <header class="dashboard-header">
+        <h1 class="logo">🐾 PETMATCH 🐾</h1>
+    </header>
 
-        <nav>
-            <ul class="dashboard-menu">
-                <li><a href="/index.html">🔎 Encontrar Mascota</a></li>
-                <li><a href="/notifications.html">🔔 Notificaciones</a></li>
-                <li><a href="#">💬 Chat (Próximamente)</a></li>
-            </ul>
-        </nav>
+    <!-- Navbar con botones alineados -->
+    <nav class="menu-nav">
+        <div class="left-buttons">
+            <button id="profile-button">Perfil</button>
+            <button id="forum-button">Foro</button>
+        </div>
+        <div class="right-buttons">
+            <button id="logout-button">Cerrar Sesión</button>
+        </div>
+    </nav>
 
-        <section id="dashboard-content">
-            <p>¡Bienvenido al panel de control de PetMatch!</p>
-        </section>
-    </div>
+    <!-- Contenido principal -->
+     
+    <main id="dashboard-content">
+        <p id="welcome-message">¡Bienvenido al panel de control de PetMatch!</p>
+
+        <ul class="dashboard-links">
+            <li><a href="/find.html">🔎 Encontrar Mascota</a></li>
+            <li><a href="/notifications.html">🔔 Notificaciones</a></li>
+            <li><a href="#">💬 Chat</a></li>
+        </ul>
+    </main>
+
+    <!-- Pie de página -->
+    <footer class="dashboard-footer">
+        <p>&copy; 2025 PetMatch - Todos los derechos reservados.</p>
+    </footer>
+
     <script src="/dashboard.js"></script>
 </body>
 </html>

@@ -18,8 +18,13 @@ document.getElementById('login-form').addEventListener('submit', async (event) =
         }
 
         const data = await response.json();
+
+        // Guardar el token y datos en localStorage
         localStorage.setItem('token', data.token);
-        localStorage.setItem('userId', data.user.id);  // Guardar ID del usuario para futuros usos
+        localStorage.setItem('userId', data.user.id);
+        localStorage.setItem('firstName', data.user.first_name || ""); // 🔥 Guardar el nombre del usuario
+
+        console.log("Login exitoso. Usuario:", data.user); // Debugging
 
         // Redirigir al dashboard después de un login exitoso
         window.location.href = '/dashboard.html';

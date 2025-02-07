@@ -1,0 +1,204 @@
+/* Variables de colores */
+:root {
+    --primary-color: #FFA500;    /* Naranja cálido */
+    --secondary-color: #FFFFFF;  /* Blanco */
+    --accent-color: #4B0082;    /* Índigo */
+    --text-color: #333333;      /* Gris oscuro */
+    --background-color: #F5F5F5; /* Gris claro */
+}
+
+/* Estilos generales */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: var(--light-bg);
+    color: var(--text-color);
+    line-height: 1.6;
+}
+
+/* Header */
+header {
+    background-color: var(--primary-color);
+    color: var(--white);
+    padding: 1rem 2rem;
+    text-align: center;
+    box-shadow: 0 2px 5px var(--primary-color);
+}
+
+header h1 {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: var(--secondary-color); /* Blanco */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+    filter: brightness(0) invert(1); /* Convierte el emoji a blanco */
+    align-items: center;
+}
+
+
+
+/* Navegación */
+.menu-nav {
+    background-color: var(--white);
+    padding: 1rem 2rem;
+    box-shadow: 0 2px 5px var(--primary-color);
+    display: flex;
+    justify-content: center; /* Centra los elementos horizontalmente */
+    align-items: center;
+    text-align: center;
+}
+
+.left-buttons {
+    display: flex;
+    gap: 1rem;
+}
+
+button {
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    font-size: 1rem;
+}
+
+#login-button {
+    background-color: var(--primary-color);
+    color: var(--white);
+}
+
+#register-button {
+    background-color: var(--white);
+    color: var(--primary-color);
+    border: 2px solid var(--primary-color);
+}
+
+button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.nav-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center; /* Centra los botones horizontalmente */
+}
+
+/* Banner y contenido principal */
+.banner-image {
+    width: 100%;
+    position: relative;
+    padding-top: 40%; /* Ratio de aspecto 16:9 aproximado */
+    overflow: hidden;
+}
+
+.banner-image img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.hero-section {
+    text-align: center;
+    padding: 4rem 2rem;
+    background-color: var(--white);
+    margin-top: -50px;
+    border-radius: 15px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.hero-section h1 {
+    color: var(--primary-color);
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.hero-section p {
+    font-size: 1.2rem;
+    color: var(--text-color);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* Footer */
+.footer-bottom {
+    background-color: var(--primary-color);
+    color: var(--white);
+    text-align: center;
+    padding: 1rem;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
+    .banner-image {
+        padding-top: 45%;
+    }
+}
+
+@media (max-width: 992px) {
+    .banner-image {
+        padding-top: 50%;
+    }
+}
+
+@media (max-width: 768px) {
+    .banner-image {
+        padding-top: 60%;
+    }
+    
+    .hero-section {
+        margin-top: -30px;
+        padding: 2rem 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .banner-image {
+        padding-top: 75%; /* Más alto en móviles */
+    }
+    
+    .hero-section h1 {
+        font-size: 1.8rem;
+    }
+    
+    .hero-section p {
+        font-size: 1rem;
+    }
+}
+
+/* Para dispositivos muy pequeños */
+@media (max-width: 320px) {
+    .banner-image {
+        padding-top: 90%;
+    }
+}
+
+
+@media (max-width: 768px) {
+    .banner-image img {
+        max-height: 300px; /* Asegura que no se corte tanto en pantallas pequeñas */
+        object-fit: cover; /* Cubre mejor en dispositivos móviles */
+    }
+}
+
+@media (max-width: 480px) {
+    .banner-image img {
+        max-height: 250px; /* Más pequeño en móviles */
+        object-fit: contain; /* Evita que se corte */
+    }
+}

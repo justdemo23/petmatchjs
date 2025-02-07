@@ -64,6 +64,8 @@ const login = async (req, res) => {
                 last_name: user.last_name 
             } 
         });
+
+        console.log('Login exitoso. Usuario:', user);
     } catch (error) {
         console.error('Error en el login:', error);
         res.status(500).json({ message: 'Error interno del servidor' });

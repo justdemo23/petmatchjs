@@ -8,6 +8,7 @@ const forumRoutes = require('./routes/forum');
 const likesRoutes = require('./routes/likes');
 const notificationsRoutes = require('./routes/notifications');
 const dislikesRoutes = require('./routes/dislikes');
+const dashboardRoutes = require('./routes/dashboard');
 
 
 const path = require('path');
@@ -16,15 +17,13 @@ const PORT = process.env.PORT || 3000;
 
 app.use(cors());
 app.use(express.json()); // Para recibir JSON en las peticiones
-app.use(express.static('public'));
+app.use(express.static(path.join(__dirname, 'public')));
 app.use('/uploads', express.static('public/uploads'));
 app.use('/uploads', express.static('uploads'));
 
-
-
-// Ruta principal para verificar que la API funciona
+// cuando entren a la url lo primero que vea sea home.html
 app.get('/', (req, res) => {
-  res.send('¡Bienvenido a PetMatch API!');
+  res.sendFile(path.join(__dirname, 'public', 'home.html'));
 });
 
 // ruta registrar usuario
@@ -56,6 +55,11 @@ app.use('/api/login', loginRoutes);
 
 // Rutas de dislikes
 app.use('/api/dislikes', dislikesRoutes);
+
+// Rutas del dashboard
+app.use('/api/dashboard', dashboardRoutes);
+
+
 
 // Iniciar el servidor
 app.listen(PORT, "0.0.0.0", () => {

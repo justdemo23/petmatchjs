@@ -1,0 +1,407 @@
+/* ====== VARIABLES DE COLORES ====== */
+:root {
+    --primary-color: #FFA500;    /* Naranja cálido */
+    --secondary-color: #FFFFFF;  /* Blanco */
+    --accent-color: #4B0082;    /* Índigo */
+    --text-color: #333333;      /* Gris oscuro */
+    --background-color: #F5F5F5; /* Gris claro */
+    --border-radius: 10px;
+    --shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* ====== RESET Y ESTILOS GENERALES ====== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+
+/* ====== HEADER ====== */
+.forum-header {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 15px 0;
+    text-align: center;
+}
+
+/* ====== NAVBAR ====== */
+.menu-nav {
+    background-color: var(--accent-color);
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: var(--shadow);
+}
+
+.menu-nav .nav-links {
+    display: flex;
+    gap: 15px;
+}
+
+.menu-nav a {
+    text-decoration: none;
+    font-weight: bold;
+    color: var(--primary-color);
+    padding: 10px 15px;
+    border-radius: var(--border-radius);
+    transition: background 0.3s;
+}
+
+.menu-nav a:hover {
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+}
+#forum-button {
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+}
+
+#profile-button,
+#dashboard-button {
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: bold;
+    padding: 10px 18px;
+    transition: all 0.3s ease;
+    margin-left: 8px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+#profile-button:hover,
+#dashboard-button:hover {
+    background-color: var(--accent-color);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+}
+
+#profile-button:active,
+#dashboard-button:active {
+    transform: scale(0.95);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+/* Botón de cerrar sesión alineado a la derecha */
+#logout-button {
+    background: var(--primary-color);
+    color: var(--background-color);
+    padding: 10px 18px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    transition: background 0.3s ease;
+}
+
+#logout-button:hover {
+    background: #3A0066; /* Índigo más oscuro */
+}
+
+
+/* ====== CONTENEDOR DEL FORO ====== */
+.forum-container {
+    padding: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* ====== FORMULARIO DE PUBLICACIÓN ====== */
+.create-post {
+    background-color: var(--secondary-color);
+    padding: 20px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.create-post input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: var(--border-radius);
+    font-size: 1rem;
+}
+
+.create-post input[type="text"]:focus {
+    outline: none;
+    border-color: var(--primary-color);
+}
+
+/* Texto del post */
+.create-post textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: var(--border-radius);
+    font-size: 1rem;
+    resize: none;
+}
+
+/* ====== Campo de Adjuntar Imagen ====== */
+.file-upload-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    text-align: center;
+}
+
+.file-label {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 10px 15px;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background 0.3s;
+}
+
+.file-label:hover {
+    background-color: #e69500;
+}
+
+/* Ocultar el input file y aplicar estilos personalizados */
+.create-post input[type="file"] {
+    display: none;
+}
+
+.upload-preview {
+    max-width: 100%;
+    max-height: 150px;
+    border-radius: var(--border-radius);
+    margin-top: 10px;
+    display: none;
+}
+
+/* Botón Publicar */
+.create-post button {
+    background: var(--primary-color);
+    color: var(--secondary-color);
+    padding: 12px;
+    border-radius: var(--border-radius);
+    border: none;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    width: 100%;
+    transition: background 0.3s;
+}
+
+.create-post button:hover {
+    background: #e69500;
+}
+
+/* ====== LISTA DE PUBLICACIONES ====== */
+.forum-posts {
+    background-color: var(--secondary-color);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    padding: 20px;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* ====== TARJETAS DE PUBLICACIÓN ====== */
+.post-card {
+    background-color: var(--secondary-color);
+    padding: 15px;
+    border-radius: var(--border-radius);
+    margin-bottom: 20px;
+    box-shadow: var(--shadow);
+    border: 1px solid #DADADA;
+    position: relative;
+}
+
+.post-card:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    bottom: -22px;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background-color: var(--primary-color);
+}
+
+/* Header del post (Usuario y fecha) */
+.post-card .post-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.post-card .post-header img {
+    width: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+/* Contenido del post */
+.post-card .post-content {
+    margin-bottom: 10px;
+}
+
+/* IMAGEN EN LA PUBLICACIÓN */
+.post-image {
+    width: 100%;
+    max-width: 400px;
+    max-height: 250px;
+    height: auto;
+    border-radius: var(--border-radius);
+    object-fit: cover;
+    display: block;
+    margin: 10px auto;
+}
+
+/* Botones de interacción */
+.post-actions {
+    display: flex;
+    justify-content: space-around;
+    padding: 10px 0;
+    border-top: 1px solid var(--background-color);
+    margin-top: 10px;
+}
+
+.post-actions button {
+    background: transparent;
+    border: none;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #65676B;
+    padding: 8px 10px;
+    cursor: pointer;
+    transition: background 0.2s;
+    border-radius: var(--border-radius);
+}
+
+.post-actions button:hover {
+    background: #E4E6EB;
+}
+
+/* ====== SECCIÓN DE COMENTARIOS ====== */
+.comment-section {
+    margin-top: 20px;
+}
+
+/* Comentario */
+.comment {
+    display: flex;
+    align-items: flex-start;
+    padding: 12px;
+    border-radius: var(--border-radius);
+    background: var(--background-color);
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.comment img {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    margin-right: 8px;
+}
+
+.comment-content {
+    background: var(--secondary-color);
+    padding: 12px 16px;
+    border-radius: var(--border-radius);
+    max-width: 90%;
+}
+
+.comment-content p {
+    font-size: 0.9rem;
+    margin-bottom: 8px;
+    line-height: 1.4;
+}
+
+.comment-content span {
+    font-size: 0.75rem;
+    color: #65676B;
+}
+
+/* Campo de comentarios */
+.comment-box {
+    display: flex;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    align-items: center;
+}
+
+.comment-box input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--text-color);
+    border-radius: var(--border-radius);
+    font-size: 0.9rem;
+}
+
+.comment-box button {
+    background: var(--primary-color);
+    color: var(--secondary-color);
+    padding: 8px 12px;
+    border-radius: var(--border-radius);
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    margin-left: 5px;
+    transition: background 0.3s;
+}
+
+.comment-box button:hover {
+    background: #1F2D3D;
+}
+
+/* Estilo para el divisor entre posts */
+.post-divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--primary-color) 20%, var(--primary-color) 80%, transparent);
+    margin: 15px auto;
+    opacity: 0.6;
+    width: 90%;
+}
+
+/* ====== RESPONSIVE ====== */
+@media (max-width: 768px) {
+    .forum-container {
+        padding: 15px;
+        max-width: 95%;
+    }
+
+    .post-card img {
+        max-height: 250px;
+    }
+
+    .comment-box button {
+        padding: 6px 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .post-card img {
+        max-width: 100%;
+        max-height: 250px;
+        object-fit: contain;
+    }
+}

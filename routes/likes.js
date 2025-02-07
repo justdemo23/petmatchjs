@@ -69,4 +69,25 @@ router.get('/:petId/matches', async (req, res) => {
     }
 });
 
+router.get('/profile/:userId', async (req, res) => {
+    const { userId } = req.params;
+
+    try {
+        const [likes] = await db.execute(
+            `SELECT l.pet_id_from, p.name AS pet_name, p.breed, p.age, p.filepath
+             FROM likes l
+             JOIN pets p ON l.pet_id_from = p.id
+             WHERE p.owner_id = ?`,
+            [userId]
+        );
+
+        res.status(200).json({ likes });
+    } catch (error) {
+        console.error('Error al obtener likes:', error);
+        res.status(500).json({ message: 'Error interno del servidor' });
+    }
+});
+
+
+
 module.exports = router;

@@ -88,7 +88,7 @@ header {
 }
 
 .card-image {
-    height: 300px;
+    height: 400px;
     overflow: hidden;
     position: relative;
 }
@@ -552,7 +552,7 @@ header::after {
 /* Ajustes para pantallas pequeñas */
 @media screen and (max-width: 480px) {
     .card-image {
-        height: 200px;
+        height: 340px;
     }
 
     .card-buttons {
@@ -602,4 +602,71 @@ html {
 .dashboard-menu li a:hover {
     background-color: var(--accent-color);
     color: var(--secondary-color);
+}
+/* 📌 Navbar */
+.menu-nav {
+    background: var(--accent-color);
+    padding: 10px;
+    display: flex;
+    justify-content: space-between; /* Espacio entre botones de izquierda y derecha */
+    align-items: center;
+}
+
+/* 📌 Contenedor de botones de la izquierda (Perfil, Foro, Dashboard) */
+.left-buttons {
+    display: flex;
+    gap: 12px;
+    margin-left: 15px;
+}
+
+/* 📌 Contenedor del botón de la derecha (Cerrar Sesión) */
+.right-buttons {
+    margin-right: 15px;
+}
+
+/* 🎨 Estilos generales de los botones del navbar */
+#profile-button,
+#forum-button,
+#dashboard-button,
+#logout-button {
+    background: var(--primary-color);
+    color: var(--secondary-color);
+    padding: 8px 14px; /* Ajuste para que no sean tan grandes */
+    border: none;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    transition: var(--transition);
+    box-shadow: var(--shadow);
+}
+
+/* 📌 Ajuste específico para el botón "Cerrar Sesión" */
+#logout-button {
+    padding: 7px 12px;
+    font-size: 13px;
+}
+
+/* 🎨 Efecto hover para todos los botones */
+#profile-button:hover,
+#forum-button:hover,
+#dashboard-button:hover,
+#logout-button:hover {
+    background: #e68900; /* Naranja más oscuro */
+    transform: scale(1.05);
+}
+
+/* 📱 Ajustes para pantallas pequeñas */
+@media (max-width: 480px) {
+    .menu-nav {
+        padding: 8px;
+    }
+
+    #profile-button,
+    #forum-button,
+    #dashboard-button,
+    #logout-button {
+        padding: 6px 12px;
+        font-size: 10px;
+    }
 }
