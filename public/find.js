@@ -63,7 +63,7 @@ function showCurrentPet() {
                         <path d="M3 3l18 18"></path>
                     </svg>
                 </button>
-                <button class="action-button like-btn" onclick="likePet()">
+                <button class="action-button like-btn" onclick="likePet(${pet.id})">
                     <svg class="paw-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
                         <path d="M14.7 13.5c-1.1 -2 -1.441 -2.5 -2.7 -2.5c-1.259 0 -1.736 .755 -2.836 2.747c-.942 1.703 -2.846 1.845 -3.321 3.291c-.097 .265 -.145 .677 -.143 .962c0 1.176 .787 2 1.8 2c1.259 0 3 -1 4.5 -1s3.241 1 4.5 1c1.013 0 1.8 -.823 1.8 -2c0 -.285 -.049 -.697 -.146 -.962c-.475 -1.451 -2.512 -1.835 -3.454 -3.538z"></path>
                         <path d="M20.188 8.082a1.039 1.039 0 0 0 -.406 -.082h-.015c-.735 .012 -1.56 .75 -1.993 1.866c-.519 1.335 -.28 2.7 .538 3.052c.129 .055 .267 .082 .406 .082c.739 0 1.575 -.742 2.011 -1.866c.516 -1.335 .273 -2.7 -.54 -3.052z"></path>
@@ -128,14 +128,58 @@ function handleDislike() {
     showCurrentPet();
 }
 
-function likePet() {
-    console.log('Mascota likeada');
-    handleLike();
-}
 
-function dislikePet() {
-    console.log('Mascota dislikeada');
-    handleDislike();
+// funcion para dar like a la mascota actual la logica en el backend es http://localhost:3000/api/likes/3/like 3 es el id de la masccota actual y "pet_id_from": 1 que inicia sesion el usuario
+async function likePet(petId) {
+    const token = localStorage.getItem('token');
+    try {
+        const response = await fetch(`/api/likes/${petId}/like`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify({
+                pet_id_from: localStorage.getItem('userId')
+            })
+        });
+
+        const data = await response.json();
+
+        if (!response.ok && response.status !== 400) {
+            throw new Error('Error al dar like');
+        }
+
+        const container = document.getElementById('pet-cards-container');
+        
+        if (data.message === 'Like registrado exitosamente') {
+            container.innerHTML += `<p class="like-message">¡Uuyy le diste like, te gusta!</p>`;
+            
+            setTimeout(() => {
+                const likeMessage = container.querySelector('.like-message');
+                if (likeMessage) {
+                    likeMessage.remove();
+                }
+                handleLike();
+            }, 3000);
+        } 
+        else if (data.message === 'Ya diste like a esta mascota') {
+            container.innerHTML += `<p class="like-message">¡Ya diste like a esta mascota!</p>`;
+            
+            setTimeout(() => {
+                const likeMessage = container.querySelector('.like-message');
+                if (likeMessage) {
+                    likeMessage.remove();
+                }
+                handleDislike();
+            }, 3000);
+        }
+
+        console.log('Respuesta del servidor:', data);
+    } catch (error) {
+        console.error('Error al dar like:', error);
+        showError('Error al dar like a la mascota');
+    }
 }
 
 
@@ -162,30 +206,24 @@ document.getElementById('forum-button').addEventListener('click', function() {
 
 
 
-async function likePet() {
-    if (currentPetIndex >= pets.length) return;
-
-    const pet = pets[currentPetIndex]; // Obtener la mascota actual
-    const userId = localStorage.getItem('userId'); // ID del usuario logueado
-
+async function dislikePet() {
     try {
-        const response = await fetch(`/api/likes/${pet.id}/like`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${localStorage.getItem('token')}`
-            },
-            body: JSON.stringify({ pet_id_from: userId })
-        });
-
-        if (!response.ok) {
-            throw new Error('Error al dar like');
-        }
-
-        console.log(`Like enviado a la mascota ${pet.id}`);
-        handleLike(); // Pasar a la siguiente mascota
+        const container = document.getElementById('pet-cards-container');
+        container.innerHTML += `<p class="dislike-message">No te gustó esta mascota</p>`;
+        
+        // Eliminar el mensaje después de 2 segundos
+        setTimeout(() => {
+            const dislikeMessage = container.querySelector('.dislike-message');
+            if (dislikeMessage) {
+                dislikeMessage.remove();
+            }
+            handleDislike(); // Pasar a la siguiente mascota
+        }, 2000);
+        
+        console.log('Mascota dislikeada');
     } catch (error) {
-        console.error('Error al dar like:', error);
+        console.error('Error al dar dislike:', error);
+        showError('Error al rechazar la mascota');
     }
 }
 
@@ -194,3 +232,6 @@ async function likePet() {
 document.addEventListener('DOMContentLoaded', () => {
     loadPets();
 });
+
+
+

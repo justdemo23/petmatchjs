@@ -9,6 +9,8 @@ const likesRoutes = require('./routes/likes');
 const notificationsRoutes = require('./routes/notifications');
 const dislikesRoutes = require('./routes/dislikes');
 const dashboardRoutes = require('./routes/dashboard');
+const matchcheckRoutes = require('./routes/matchcheck');
+
 
 
 const path = require('path');
@@ -59,7 +61,8 @@ app.use('/api/dislikes', dislikesRoutes);
 // Rutas del dashboard
 app.use('/api/dashboard', dashboardRoutes);
 
-
+// Rutas de matchcheck
+app.use('/api/matchcheck', matchcheckRoutes);
 
 // Iniciar el servidor
 app.listen(PORT, "0.0.0.0", () => {
