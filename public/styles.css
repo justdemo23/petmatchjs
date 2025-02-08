@@ -392,6 +392,8 @@ header::after {
     box-shadow: var(--shadow);
 }
 
+/* Estilos para los botones del formulario */
+#next-btn, 
 .register-form button[type="submit"] {
     width: 100%;
     padding: 15px;
@@ -404,15 +406,21 @@ header::after {
     font-weight: bold;
     transition: var(--transition);
     margin-top: 20px;
-}
-
-.register-form button[type="submit"]:hover {
-    background-color: var(--accent-color);
-    transform: translateY(-2px);
     box-shadow: var(--shadow);
 }
 
-/* Media queries para pantallas pequeñas */
+#next-btn:hover,
+.register-form button[type="submit"]:hover {
+    background-color: var(--accent-color);
+    transform: translateY(-2px);
+}
+
+#next-btn:active,
+.register-form button[type="submit"]:active {
+    transform: translateY(0);
+}
+
+/* Ajustes para pantallas pequeñas */
 @media (max-width: 480px) {
     .register-form {
         padding: 15px;
@@ -434,6 +442,7 @@ header::after {
         font-size: 16px !important;
     }
 
+    #next-btn,
     .register-form button[type="submit"] {
         padding: 12px;
         font-size: 1rem;
