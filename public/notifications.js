@@ -38,9 +38,10 @@ document.addEventListener('DOMContentLoaded', async () => {
                         <div class="card-info">
                             <h2>${like.pet_name}</h2>
                             <p>Raza: ${like.breed}</p>
+                            <p>Edad: ${like.age}</p>
                             <!-- Usar pet_id_from en lugar de pet_id -->
-                            <button class="like-btn mobile-btn" onclick="likeBack(${like.pet_id_from})">Dar Like de Vuelta</button>
-                            <button class="dislike-btn mobile-btn" onclick="removeLike(${like.id})">❌ Quitar Like</button>
+                            <button class="like-btn mobile-btn" onclick="likeBack(${like.pet_id_from})"> ❤️ MATCH ❤️ </button>
+                            <button class="dislike-btn mobile-btn" onclick="removeLike(${like.id})">👎 RECHAZAR 👎</button>
                         </div>
                     </div>
                 `;

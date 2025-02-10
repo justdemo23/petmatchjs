@@ -7,6 +7,32 @@
     --background-color: #F5F5F5;  /* Gris claro */
 }
 
+/* logo en el header */
+.logo {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 10px;
+}
+
+.logo img {
+    width: 100%;
+    height: auto;
+    max-height: 150px; /* Ajusta esta altura según tus necesidades */
+    object-fit: contain; /* Mantiene la proporción de la imagen */
+    display: block;
+}
+
+/* eliminar el fondo de la imagen */
+.logo img {
+    background-color: transparent;
+}
+
+header {
+    background-color: var(--primary-color);
+}
+
+
 /* Estilos generales */
 body {
     font-family: Arial, sans-serif;
@@ -89,43 +115,51 @@ body {
 
 /* Contenido principal */
 #dashboard-content {
-    flex-grow: 1;
-    padding: 30px 10px;
-}
-
-
-
-/* Enlaces del main */
-.dashboard-links a {
-    text-decoration: none;
-    color: var(--secondary-color);
-    font-size: 16px;
-    font-weight: bold;
-    background: var(--primary-color);
-    padding: 12px 20px;
-    border-radius: 8px;
-    transition: background 0.3s ease, transform 0.2s ease;
-    display: block;
-    width: 100%;
-    text-align: center;
+    flex-grow: 1; /* Permite que el contenido crezca para ocupar el espacio disponible */
+    padding: 30px 10px; /* Añade espacio interno arriba y abajo (30px) y a los lados (10px) */
 }
 
 /* Lista de enlaces en el main */
 .dashboard-links {
-    list-style: none;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    align-items: center;
-    max-width: 300px;
-    margin: 0 auto;
+    list-style: none; /* Elimina los puntos de la lista */
+    padding: 0; /* Elimina cualquier espacio interno que tenga la lista */
+    display: flex; /* Usa flexbox para organizar los elementos */
+    flex-direction: column; /* Acomoda los elementos en una columna */
+    gap: 10px; /* Espaciado uniforme entre los elementos */
+    align-items: center; /* Centra los elementos horizontalmente */
+    max-width: 300px; /* Limita el ancho de los enlaces */
+    margin: 0 auto; /* Centra la lista dentro del contenedor */
 }
 
-.dashboard-links a:hover {
-    background: #e68900;
-    transform: scale(1.05);
+/* Enlaces dentro de la lista */
+.dashboard-links a {
+    text-decoration: none; /* Elimina el subrayado del enlace */
+    color: var(--secondary-color); /* Usa el color secundario del tema */
+    font-size: 16px; /* Tamaño del texto */
+    font-weight: bold; /* Hace el texto más grueso */
+    background: var(--primary-color); /* Color de fondo del botón */
+    padding: 12px 20px; /* Espaciado interno (altura y ancho del botón) */
+    border-radius: 8px; /* Bordes redondeados */
+    transition: background 0.3s ease, transform 0.2s ease; /* Animación al pasar el mouse */
+    display: block; /* Hace que el enlace ocupe todo el ancho disponible */
+    width: 100%; /* Hace que el botón ocupe el mismo ancho en toda la lista */
+    text-align: center; /* Centra el texto dentro del botón */
+    /* width: 100%; Hace que todos los botones ocupen el mismo ancho dentro del contenedor */
+    min-width: 250px; /* Fuerza un ancho mínimo */
+    min-height: 50px; /* Fuerza una altura mínima */
+    display: flex; /* Convierte el enlace en un contenedor flexible */
+    justify-content: center; /* Centra el texto horizontalmente */
+    align-items: center; /* Centra el texto verticalmente */
+    white-space: nowrap; /* Evita que el texto pase a otra línea */
+
 }
+
+/* Efecto hover en los enlaces */
+.dashboard-links a:hover {
+    background: #e68900; /* Cambia el color de fondo al pasar el mouse */
+    transform: scale(1.05); /* Hace que el botón crezca un poco */
+}
+
 
 /* Pie de página */
 .dashboard-footer {

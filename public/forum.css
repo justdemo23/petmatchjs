@@ -285,11 +285,11 @@ body {
 }
 
 .post-actions button {
-    background: transparent;
+    background: var(--primary-color);
     border: none;
     font-size: 1rem;
     font-weight: bold;
-    color: #65676B;
+    color: var(--background-color);
     padding: 8px 10px;
     cursor: pointer;
     transition: background 0.2s;
@@ -297,7 +297,7 @@ body {
 }
 
 .post-actions button:hover {
-    background: #E4E6EB;
+    background: var(--accent-color);
 }
 
 /* ====== SECCIÓN DE COMENTARIOS ====== */
@@ -405,3 +405,28 @@ body {
         object-fit: contain;
     }
 }
+
+/* Estilos para el footer */
+.forum-footer {
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+    text-align: center;
+    padding: 10px 0;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+/* responsive para el footer */
+@media (max-width: 768px) {
+    .forum-footer {
+        padding: 10px 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .forum-footer {
+        padding: 10px 0;
+    }
+}
+

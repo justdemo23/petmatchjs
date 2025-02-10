@@ -56,7 +56,7 @@ router.get('/:petId/matches', async (req, res) => {
 
     try {
         const [matches] = await db.execute(`
-            SELECT p.id, p.name, p.breed, p.age 
+            SELECT p.id, p.name, p.breed, p.age, p.owner_name
             FROM matches m
             JOIN pets p ON (m.pet_id_1 = p.id OR m.pet_id_2 = p.id)
             WHERE (m.pet_id_1 = ? OR m.pet_id_2 = ?) AND p.id != ?

@@ -50,7 +50,7 @@ function showCurrentPet() {
                 <h2>${pet.name}, ${pet.age} años</h2>
                 <p>${pet.description || 'Sin descripción'}</p>
                 <p>Raza: ${pet.breed}</p>
-                <p>Dueño: ${pet.owner_name || 'Desconocido'}</p>
+                <p>Compañero/a humano: ${pet.owner_name || 'Desconocido'}</p>
             </div>
             <div class="card-buttons">
                 <button class="action-button dislike-btn" onclick="dislikePet()">

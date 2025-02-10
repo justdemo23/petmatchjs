@@ -3,14 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Notificaciones - PetMatch</title>
+    <title>Notificaciones - Puppies Match</title>
     <link rel="stylesheet" href="/notifications.css">
 </head>
+
 <body>
+    <div class="logoContainer">
+        <img src="/uploads/logo en blanco.png" alt="Logo de Puppies Match">
+    </div>
+
     <div class="container">
+
         <header>
-            <h1>🔔 Notificaciones 🔔</h1>
+            <h1> 😍 Tus Likes 😍 </h1>
         </header>
+
+        <!-- el nav de la pagina con los botones de la pagina -->
+        <div class="menu-nav">
+            <nav>
+                <ul>
+                    <button onclick="window.location.href='/dashboard.html'" class="menu-button">VOLVER AL INICIO</button>
+            </ul>
+        </nav>
 
         <section id="notifications-container">
             <p>Cargando notificaciones...</p>
@@ -20,3 +34,5 @@
     <script src="/notifications.js"></script>
 </body>
 </html>
+
+

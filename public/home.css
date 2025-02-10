@@ -21,25 +21,29 @@ body {
     line-height: 1.6;
 }
 
-/* Header */
+.logo {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 10px;
+}
+
+.logo img {
+    width: 100%;
+    height: auto;
+    max-height: 150px; /* Ajusta esta altura según tus necesidades */
+    object-fit: contain; /* Mantiene la proporción de la imagen */
+    display: block;
+}
+
+/* eliminar el fondo de la imagen */
+.logo img {
+    background-color: transparent;
+}
+
 header {
     background-color: var(--primary-color);
-    color: var(--white);
-    padding: 1rem 2rem;
-    text-align: center;
-    box-shadow: 0 2px 5px var(--primary-color);
 }
-
-header h1 {
-    font-size: 2.5rem;
-    font-weight: bold;
-    color: var(--secondary-color); /* Blanco */
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
-    filter: brightness(0) invert(1); /* Convierte el emoji a blanco */
-    align-items: center;
-}
-
-
 
 /* Navegación */
 .menu-nav {
@@ -69,12 +73,12 @@ button {
 
 #login-button {
     background-color: var(--primary-color);
-    color: var(--white);
+    color: var(--accent-color);
 }
 
 #register-button {
-    background-color: var(--white);
-    color: var(--primary-color);
+    background-color: var(--primary-color);
+    color: var(--accent-color);
     border: 2px solid var(--primary-color);
 }
 
@@ -132,6 +136,8 @@ button:hover {
     margin: 0 auto;
 }
 
+
+
 /* Footer */
 .footer-bottom {
     background-color: var(--primary-color);
@@ -162,7 +168,8 @@ button:hover {
     }
     
     .hero-section {
-        margin-top: -30px;
+        margin-top: -100px; 
+        margin-bottom: 100px;
         padding: 2rem 1rem;
     }
 }
@@ -202,3 +209,4 @@ button:hover {
         object-fit: contain; /* Evita que se corte */
     }
 }
+

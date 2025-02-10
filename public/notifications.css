@@ -33,7 +33,8 @@ body {
 header {
     text-align: center;
     margin-bottom: 20px;
-    color: var(--primary-color);
+    color: var(--secondary-color);
+    background-color: var(--accent-color);
 }
 
 #notifications-container {
@@ -236,4 +237,64 @@ button:hover {
     cursor: pointer !important;
     font-size: 16px !important;
 }
+
+
+/* Estilos para el logo */
+.logoContainer {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+
+}
+
+.logoContainer img {
+    width: 100%;
+    height: auto;
+    max-height: 150px; /* Ajusta esta altura según tus necesidades */
+    object-fit: contain; /* Mantiene la proporción de la imagen */
+    display: block;
+}
+/* fondo del logo color principal */
+.logoContainer img {
+    background-color: var(--primary-color);
+
+
+}
+
+/* menu nav */
+.menu-nav {
+    background: var(--accent-color);
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+}
+
+.menu-nav nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.menu-nav nav ul li {
+    margin: 0;
+}
+
+.menu-nav nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    padding: 8px 15px;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+.menu-nav nav ul li a:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+
+
 

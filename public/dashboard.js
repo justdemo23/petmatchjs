@@ -15,8 +15,8 @@ document.addEventListener('DOMContentLoaded', () => {
     if (welcomeMessage) {
         console.log("Nombre del usuario recuperado:", firstName); // 🔥 Debugging
         welcomeMessage.textContent = firstName 
-            ? `¡Bienvenido a PetMatch, ${firstName}! 🔥` 
-            : "¡Bienvenido a PetMatch!";
+            ? `¡Bienvenido a Puppies Match, ${firstName}! 🔥` 
+            : "¡Bienvenido a Puppies Match!";
     }
 
     // Agregar evento al botón de cerrar sesión
