@@ -47,7 +47,7 @@ const getConversations = async (req, res) => {
 
     try {
         const [conversations] = await db.execute(
-            `SELECT DISTINCT u.id, u.email 
+            `SELECT DISTINCT u.id, CONCAT(u.first_name, ' ', u.last_name) AS name 
              FROM users u 
              JOIN messages m ON u.id = m.sender_id OR u.id = m.receiver_id
              WHERE u.id != ?`,
@@ -60,6 +60,8 @@ const getConversations = async (req, res) => {
         res.status(500).json({ message: "Error interno del servidor" });
     }
 };
+
+
 
 // 🔹 Obtener mensajes recibidos por un usuario
 const getReceivedMessages = async (req, res) => {

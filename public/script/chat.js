@@ -40,10 +40,10 @@ function loadConversations() {
             conversationList.innerHTML = "";
             users.forEach(user => {
                 const userElement = document.createElement("div");
-                userElement.textContent = user.email;
+                userElement.textContent = user.name;
                 userElement.classList.add("conversation");
                 userElement.onclick = () => {
-                    loadChat(user.id, user.email);
+                    loadChat(user.id, user.name);
                     localStorage.setItem("activeChat", user.id); // Guardar chat abierto
                 };
                 conversationList.appendChild(userElement);
