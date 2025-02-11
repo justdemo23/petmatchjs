@@ -15,6 +15,7 @@ const dashboardRoutes = require('./routes/dashboard');
 const matchcheckRoutes = require('./routes/matchcheck');
 const chatRoutes = require('./routes/chatRoutes');
 const profileRoutes = require("./routes/profileRoutes");
+const cronJobs = require("./cronJobs");
 
 const app = express();
 const server = http.createServer(app); // Crear servidor HTTP
