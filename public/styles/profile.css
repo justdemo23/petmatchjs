@@ -134,6 +134,9 @@ header {
 /* Botón eliminar cuenta */
 .delete-btn {
     background: #ff0000 !important;
+    align-items: center;
+    display: flex;
+    justify-content: center;
 }
 
 .delete-btn:hover {
