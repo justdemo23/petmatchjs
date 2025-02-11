@@ -1,0 +1,168 @@
+/* Estilos generales */
+
+:root {
+    --primary-color: #FFA500;  /* Naranja cálido */
+    --secondary-color: #FFFFFF;  /* Blanco */
+    --accent-color: #4B0082;  /* Índigo */
+    --text-color: #333333;  /* Gris oscuro */
+    --background-color: #F5F5F5;  /* Gris claro */
+}
+
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: var(--background-color);
+    margin: 0;
+    padding: 0;
+}
+/* header */
+.logo {
+    width: 300px;
+    height: 125;
+    margin: 0 auto;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+.logo img {
+    width: 120%;
+    height: 120%;
+    object-fit: contain;
+}
+header {
+    background: var(--primary-color);
+    color: var(--secondary-color);
+    padding: 15px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Navbar */
+.navbar {
+    background: var(--accent-color);
+    color: var(--secondary-color);
+    padding: 10px;
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar button {
+    background: var(--primary-color);
+    color: var(--secondary-color);
+    border: none;
+    padding: 6px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.navbar button:hover {
+    background: var(--accent-color);
+    color: var(--secondary-color);
+}
+
+.navbar button a {
+    text-decoration: none;
+    color: var(--secondary-color);
+}
+
+.navbar button a:hover {
+    color: var(--primary-color);
+}
+
+/* Alineación del botón Dashboard */
+.navbar button[onclick="goToDashboard()"] {
+    margin-right: auto;
+}
+
+/* Contenedor principal */
+.container {
+    max-width: 900px;
+    margin: 20px auto;
+    padding: 20px;
+    background: var(--secondary-color);
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Perfil del usuario */
+.profile-card {
+    padding: 20px;
+    background: var(--accent-color);
+    border-radius: 10px;
+    margin-bottom: 20px;
+    opacity: 0.7;
+    color: var(--secondary-color);
+}
+
+.profile-card h2 {
+    color: var(--primary-color);
+}
+
+.profile-card p {
+    margin: 10px 0;
+}
+
+.profile-card input {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.profile-card button {
+    width: 100%;
+    background: var(--primary-color);
+    color: var(--secondary-color);
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.profile-card button:hover {
+    background: var(--accent-color);
+}
+
+/* Botón eliminar cuenta */
+.delete-btn {
+    background: #ff0000 !important;
+}
+
+.delete-btn:hover {
+    background: #cc0000 !important;
+}
+
+/* Sección de mascotas */
+.pets-section {
+    margin-top: 20px;
+}
+
+.pets-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.pet-card {
+    background: white;
+    padding: 10px;
+    border-radius: 10px;
+    width: 180px;
+    text-align: center;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.pet-card img {
+    width: 100%;
+    height: 120px;
+    border-radius: 10px;
+    object-fit: cover;
+}

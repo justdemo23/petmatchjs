@@ -14,6 +14,7 @@ const dislikesRoutes = require('./routes/dislikes');
 const dashboardRoutes = require('./routes/dashboard');
 const matchcheckRoutes = require('./routes/matchcheck');
 const chatRoutes = require('./routes/chatRoutes');
+const profileRoutes = require("./routes/profileRoutes");
 
 const app = express();
 const server = http.createServer(app); // Crear servidor HTTP
@@ -51,6 +52,8 @@ app.use('/api/dashboard', dashboardRoutes);
 app.use('/api/matchcheck', matchcheckRoutes);
 app.use('/api/chat', chatRoutes);
 app.use('/api/chat/myMessages/:userId', chatRoutes);
+app.use('/api/profile', profileRoutes);
+
 
 // Iniciar el servidor con WebSockets
 server.listen(PORT, "0.0.0.0", () => {

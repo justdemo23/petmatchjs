@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil de Usuario</title>
+    <link rel="stylesheet" href="styles/profile.css">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="../uploads/logo en blanco.png" alt="Logo de PetMatch">
+        </div>
+    </header>
+
+    <nav class="navbar">
+        <!-- <h1>Mi Perfil</h1> -->
+        <button onclick="goToDashboard()">Dashboard</button>
+        <button onclick="logout()">Cerrar Sesión</button>
+    </nav>
+
+    <div class="container">
+        <div class="profile-card">
+            <h2>Información del Usuario</h2>
+            <p><strong>Email:</strong> <span id="email"></span></p>
+            <p><strong>Suscripción:</strong> <span id="subscription"></span></p>
+
+            <h3>Editar Información</h3>
+            <label for="first_name">Nombre:</label>
+            <input type="text" id="first_name">
+
+            <label for="last_name">Apellido:</label>
+            <input type="text" id="last_name">
+
+            <label for="address">Dirección:</label>
+            <input type="text" id="address">
+
+            <button onclick="updateProfile()">Actualizar Perfil</button>
+            <button class="delete-btn" onclick="deleteAccount()">Eliminar Cuenta</button>
+        </div>
+
+        <div class="pets-section">
+            <h2>Mascotas Registradas</h2>
+            <div id="pets-list" class="pets-list"></div>
+        </div>
+    </div>
+
+    <script src="/script/profile.js"></script>
+
+</body>
+</html>
