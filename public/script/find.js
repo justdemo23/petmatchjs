@@ -209,7 +209,7 @@ document.getElementById('forum-button').addEventListener('click', function() {
 async function dislikePet() {
     try {
         const container = document.getElementById('pet-cards-container');
-        container.innerHTML += `<p class="dislike-message">No te gustó esta mascota</p>`;
+        container.innerHTML += `<p class="dislike-message">Ahhgg Agua Fiestas</p>`;
         
         // Eliminar el mensaje después de 2 segundos
         setTimeout(() => {
@@ -226,7 +226,6 @@ async function dislikePet() {
         showError('Error al rechazar la mascota');
     }
 }
-
 
 
 document.addEventListener('DOMContentLoaded', () => {
