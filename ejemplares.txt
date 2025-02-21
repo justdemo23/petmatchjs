@@ -113,8 +113,7 @@ CREATE TABLE messages (
     sender_id INT NOT NULL,
     receiver_id INT NOT NULL,
     message TEXT NOT NULL,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 
