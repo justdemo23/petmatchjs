@@ -6,7 +6,6 @@ module.exports = (server) => {
         cors: { origin: "*", methods: ["GET", "POST"] }
     });
 
-
         io.on("connection", (socket) => {
             console.log(`🟢 Usuario conectado: ${socket.id}`);
         

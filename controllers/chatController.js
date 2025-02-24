@@ -49,9 +49,9 @@ const getConversations = async (req, res) => {
         const [conversations] = await db.execute(
             `SELECT DISTINCT u.id, CONCAT(u.first_name, ' ', u.last_name) AS name 
              FROM users u 
-             JOIN messages m ON u.id = m.sender_id OR u.id = m.receiver_id
-             WHERE u.id != ?`,
-            [userId]
+             JOIN messages m ON (u.id = m.sender_id OR u.id = m.receiver_id)
+             WHERE (m.sender_id = ? OR m.receiver_id = ?) AND u.id != ?`,
+            [userId, userId, userId]
         );
 
         res.json(conversations);
@@ -60,6 +60,7 @@ const getConversations = async (req, res) => {
         res.status(500).json({ message: "Error interno del servidor" });
     }
 };
+
 
 
 

@@ -53,16 +53,48 @@ const updateProfile = async (req, res) => {
     }
 };
 
-// 🔹 Eliminar cuenta del usuario
 const deleteAccount = async (req, res) => {
-    const { userId } = req.params;
+    const userId = Number(req.params.userId);
+    
+    if (isNaN(userId) || userId <= 0) {
+        return res.status(400).json({ message: "ID de usuario inválido" });
+    }
 
     try {
+        console.log("🔍 Intentando eliminar usuario con ID:", userId);
+
+        // 1️⃣ Verificar si el usuario existe
+        const [user] = await db.execute(`SELECT id FROM users WHERE id = ?`, [userId]);
+        if (user.length === 0) {
+            return res.status(404).json({ message: "Usuario no encontrado" });
+        }
+
+        // 🔥 2️⃣ Eliminar dependencias antes de eliminar las mascotas
+        await db.execute(`DELETE FROM likes WHERE pet_id_from IN (SELECT id FROM pets WHERE owner_id = ?)`, [userId]);
+        await db.execute(`DELETE FROM likes WHERE pet_id_to IN (SELECT id FROM pets WHERE owner_id = ?)`, [userId]); // 🔹 NUEVA LÍNEA
+        await db.execute(`DELETE FROM dislikes WHERE pet_id_from IN (SELECT id FROM pets WHERE owner_id = ?)`, [userId]);
+        await db.execute(`DELETE FROM dislikes WHERE pet_id_to IN (SELECT id FROM pets WHERE owner_id = ?)`, [userId]); // 🔹 NUEVA LÍNEA
+        await db.execute(`DELETE FROM matches WHERE pet_id_1 IN (SELECT id FROM pets WHERE owner_id = ?) OR pet_id_2 IN (SELECT id FROM pets WHERE owner_id = ?)`, [userId, userId]);
+        await db.execute(`DELETE FROM pet_images WHERE pet_id IN (SELECT id FROM pets WHERE owner_id = ?)`, [userId]);
+
+        // 3️⃣ Ahora sí, eliminar las mascotas
+        await db.execute(`DELETE FROM pets WHERE owner_id = ?`, [userId]);
+
+        // 4️⃣ Eliminar otros registros relacionados al usuario
+        await db.execute(`DELETE FROM messages WHERE sender_id = ? OR receiver_id = ?`, [userId, userId]);
+        await db.execute(`DELETE FROM forum_comments WHERE user_id = ?`, [userId]);
+        await db.execute(`DELETE FROM forum_posts WHERE user_id = ?`, [userId]);
+        await db.execute(`DELETE FROM subscriptions WHERE user_id = ?`, [userId]);
+
+        // 5️⃣ Finalmente, eliminar el usuario
         await db.execute(`DELETE FROM users WHERE id = ?`, [userId]);
+
+        console.log(`✅ Usuario con ID ${userId} eliminado correctamente.`);
         res.json({ message: "Cuenta eliminada correctamente" });
+
     } catch (error) {
-        console.error("❌ Error al eliminar cuenta:", error);
-        res.status(500).json({ message: "Error interno del servidor" });
+        console.error("❌ Error al eliminar cuenta:", error.sqlMessage || error.message);
+        res.status(500).json({ message: "Error interno del servidor", error: error.sqlMessage || error.message });
     }
 };
 
